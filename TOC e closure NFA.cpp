@@ -14,18 +14,37 @@ for(j=0;j<5;j++)
 for(k=0;k<3;k++)
 {
 trans_table[i][j][k]=-1;
-} } }
-num_states=3;
-num_symbols=2;
-symbol[10]='e';
-n=1;
-trans_table[0][0][0]=1;
+}
+}
+}
+printf("How may states in the NFA with e-moves:");
+scanf("%d",&num_states);
+printf("How many symbols in the input alphabet including e :");
+scanf("%d",&num_symbols);
+printf("Enter the symbols without space. Give 'e' first:");
+scanf("%s",symbol);
+for(i=0;i<num_states;i++)
+{
+for(j=0;j<num_symbols;j++)
+{
+printf("How many transitions from state %d for the input 
+%c:",i,symbol[j]);
+scanf("%d",&n);
+for(k=0;k<n;k++)
+{
+printf("Enter the transitions %d from state %d for the input 
+%c :", k+1,i,symbol[j]);
+scanf("%d",&trans_table[i][j][k]);
+}
+}
+}
 for(i=0;i<10;i++)
 {
 for(j=0;j<10;j++)
 {
 e_closure[i][j]=-1;
-} }
+}
+}
 for(i=0;i<num_states;i++)
 e_closure[i][0]=i;
 for(i=0;i<num_states;i++)
@@ -37,7 +56,8 @@ else
 state=i;
 ptr=1;
 find_e_closure(i);
-} }
+}
+}
 for(i=0;i<num_states;i++)
 {
 printf("e-closure(%d)= {",i);
@@ -46,9 +66,11 @@ for(j=0;j<num_states;j++)
 if(e_closure[i][j]!=-1)
 {
 printf("%d, ",e_closure[i][j]);
-} }
+}
+}
 printf("}\n");
-} }
+}
+}
 void find_e_closure(int x)
 {
 int i,j,y[10],num_trans;
@@ -64,4 +86,5 @@ for(j=0;j<num_trans;j++)
 e_closure[state][ptr]=y[j];
 ptr++;
 find_e_closure(y[j]);
-} }
+}
+}
